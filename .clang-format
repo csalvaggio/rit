@@ -1,0 +1,6 @@
+BasedOnStyle: Google
+SortIncludes: false
+DerivePointerAlignment: false
+PointerAlignment: Left
+FixNamespaceComments: false
+AlwaysBreakBeforeMultilineStrings: false

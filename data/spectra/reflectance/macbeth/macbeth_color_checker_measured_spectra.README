@@ -1,0 +1,26 @@
+Results for CIE Illuminant D65 and the 1931 2-degree Standard Observer
+ #    X       Y       Z    Name
+ 1  11.515  10.382   7.150 Dark Skin
+ 2  39.135  36.598  27.056 Light Skin
+ 3  18.349  19.633  35.647 Blue Sky
+ 4  11.149  13.855   7.427 Foliage
+ 5  25.844  24.387  45.614 Blue Flower
+ 6  31.711  43.860  44.878 Bluish Green
+ 7  37.146  29.559   6.501 Orange
+ 8  13.863  12.318  39.309 Purplish Blue
+ 9  29.133  19.847  14.994 Moderate Red
+10   8.589   6.457  15.474 Purple
+11  33.917  44.153  11.430 Yellow Green
+12  46.186  42.496   8.677 Orange Yellow
+13   8.918   6.418  32.274 Blue
+14  15.035  24.108   9.638 Green
+15  19.345  11.358   5.553 Red
+16  55.846  58.973   9.641 Yellow
+17  29.677  19.352  32.263 Magenta
+18  14.414  19.975  39.001 Cyan
+19  87.840  92.378  95.613 White
+20  57.962  61.043  65.491 Neutral 8
+21  35.229  37.041  40.226 Neutral  6.5
+22  19.349  20.471  22.154 Neutral 5
+23   8.765   9.291  10.319 Neutral 3.5
+24   3.211   3.376   3.931 Black

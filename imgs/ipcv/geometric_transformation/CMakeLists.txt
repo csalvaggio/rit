@@ -1,0 +1,20 @@
+rit_add_library(ipcv_geometric_transformation
+  SOURCES
+    MapGCP.cpp
+    MapQ2Q.cpp
+    MapRST.cpp
+    Remap.cpp
+  HEADERS
+    MapGCP.h
+    MapQ2Q.h
+    MapRST.h
+    Remap.h
+    GeometricTransformation.h
+)
+
+target_link_libraries(ipcv_geometric_transformation 
+  PUBLIC 
+    CONAN_PKG::eigen
+    CONAN_PKG::opencv
+  PRIVATE
+)

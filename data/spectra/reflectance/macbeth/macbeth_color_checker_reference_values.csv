@@ -1,0 +1,25 @@
+Patch #,Description,Manufacturer's sRGB color values,R,G,B
+1,Dark Skin,#735244,115,82,68
+2,Light Skin,#c29682,194,150,130
+3,Blue Sky,#627a9d,98,122,157
+4,Foliage,#576c43,87,108,67
+5,Blue Flower,#8580b1,133,128,177
+6,Bluish Green,#67bdaa,103,189,170
+7,Orange,#d67e2c,214,126,44
+8,Purplish Blue,#505ba6,80,91,166
+9,Moderate Red,#c15a63,193,90,99
+10,Purple,#5e3c6c,94,60,108
+11,Yellow Green,#9dbc40,157,188,64
+12,Orange Yellow,#e0a32e,224,163,46
+13,Blue,#383d96,56,61,150
+14,Green,#469449,70,148,73
+15,Red,#af363c,175,54,60
+16,Yellow,#e7c71f,231,199,31
+17,Magenta,#bb5695,187,86,149
+18,Cyan,#0885a1,8,133,161
+19,White,#f3f3f2,243,243,242
+20,Neutral 8,#c8c8c8,200,200,200
+21,Neutral 6.5,#a0a0a0,160,160,160
+22,Neutral 5,#7a7a79,122,122,121
+23,Neutral 3.5,#555555,85,85,85
+24,Black,#343434,52,52,52

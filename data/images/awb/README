@@ -1,0 +1,11 @@
+#!/bin/bash
+#------------------------------------------------------------------------
+# Test image for automatic white balance algorithms
+#
+# The image "clayton_missouri.ppm" was obtained from ...
+#   https://www.flickr.com/photos/msabeln/6107133464/
+#
+# Execute the following command to test automatic white balance ...
+#------------------------------------------------------------------------
+
+../../../build/bin/awb_grayworld --verbose --source-filename clayton_missouri.ppm --chrominance-shift-multiplier 1.1 --max-value 255 --destination-filename clayton_missouri_awb.ppm

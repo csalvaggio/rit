@@ -1,0 +1,16 @@
+#!/bin/bash
+#------------------------------------------------------------------------
+# Simulated Bayer pattern derived from truth image
+#
+# "bayer.pgm" is a 16-bit per pixel CFA document mode image (GRBG)
+# simulated from the "truth.ppm" image.  "truth.ppm" is an 8-bit
+# per pixel 3-channel image that can be used to see how well your
+# demosaicing algorithm performs quantitatively.
+#
+# Execute the following commands to test demosaicing on a simulated
+# Bayer pattern image ...
+#------------------------------------------------------------------------
+
+../../../../build/bin/demosaic_laroche_and_prescott --verbose --source-filename bayer.pgm --pattern GRBG --max-value 255 --destination-filename bayer_laroche_and_prescott.ppm
+
+../../../../build/bin/demosaic_bilinear --verbose --source-filename bayer.pgm --pattern GRBG --destination-filename bayer_bilinear.ppm

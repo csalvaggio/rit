@@ -1,0 +1,15 @@
+#!/bin/bash
+#------------------------------------------------------------------------
+# Temperature-emissivity separation using the blackbody fit method
+#
+# "200005260950.sac" contains the spectral radiance for a quartz sand
+# sample collected using a D&P Instruments MicroFTIR Model 102.  The
+# file is in comma-separated value (CSV) format with a single header
+# line.
+#
+# Execute the following command to test temperature-emissivity
+# separation ...
+#------------------------------------------------------------------------
+
+echo -e "USING BLACKBODY FIT TEMPERATURE-EMISSIVITY SEPARATION ..."
+../../../build/bin/blackbody_fit 200005260950.sac

@@ -1,0 +1,20 @@
+#!/bin/bash
+#------------------------------------------------------------------------
+# Raspberry Pi camera Bayer pattern image
+#
+# "image.pgm" is a 16-bit per pixel CFA document mode image (GBRG)
+# collected using a Raspberry Pi camera.  The data is 10-bit stored
+# in the upper 10 bits of a 16-bit word.
+#
+# Execute the following commands to test demosaicing, gamma correction,
+# and automatic white balance on a Raspberry Pi camera RAW image ...
+#------------------------------------------------------------------------
+
+echo -e "USING LAROCHE AND PRESCOTT TO PERFORM DEMOSAICING ..."
+../../../../build/bin/demosaic_laroche_and_prescott --verbose --source-filename image.pgm --pattern GBRG --max-value 65535 --destination-filename image_laroche_and_prescott.ppm
+
+echo -e "\nPERFORMING GAMMA CORRECTION ..."
+../../../../build/bin/gamma_correct --verbose --source-filename image_laroche_and_prescott.ppm --gamma 2.2 --max-value 65535 --destination-filename image_laroche_and_prescott_gamma.ppm
+
+echo -e "\nUSING GRAYWORLD ASSUMPTION TO PERFORM AUTOMATIC WHITE BALANCING ..."
+../../../../build/bin/awb_grayworld --verbose --source-filename image_laroche_and_prescott_gamma.ppm --chrominance-shift-multiplier 1.1 --max-value 65535 --destination-filename image_laroche_and_prescott_gamma_awb.ppm

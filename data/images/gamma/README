@@ -1,0 +1,11 @@
+#!/bin/bash
+#------------------------------------------------------------------------
+# Test image for gamma correction
+#
+# The image "grayscale_linear.pgm" is a continuous gradient image
+# presenting a scale from 0 to 4095.
+#
+# Execute the following command to test gamma correction ...
+#------------------------------------------------------------------------
+
+../../../build/bin/gamma_correct --verbose --source-filename grayscale_linear.pgm --gamma 2.2 --max-value 4095 --destination-filename grayscale_linear_gamma.pgm
