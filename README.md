@@ -48,11 +48,20 @@ All binaries (executables) will be located within the `build/bin` directory.
 * Eigen3
 * OpenCV 3
 
-These three target link libraries may be referenced as `PUBLIC` or `PRIVATE` in any `CMakeLists.txt` file, respectively, as
+These three target link libraries may be referenced as `PUBLIC` or `PRIVATE` (as required) in any `CMakeLists.txt` file, respectively, as
 
-    CONAN_PKG::boost
-    CONAN_PKG::eigen
-    CONAN_PKG::opencv
-
+    Boost::program_options
+    Boost::iostreams
+    Boost::filesystem
+    Boost::system
+    
+    Eigen3::Eigen
+    
+    opencv_core
+    opencv_highgui
+    opencv_imgcodecs
+    opencv_imgproc
+    opencv_videoio
+    
 # TESTING #
 The `imgs/apps` directory contains implementations and examples that will be compiled during the build process.
