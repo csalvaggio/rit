@@ -1,17 +1,7 @@
-# Sets the library prefix cache variable IMGS_LIBRARY_PREFIX
-#
-# Arguments:
-#  PREFIX The new library prefix. Should normally start with lib.
 function(rit_set_library_prefix PREFIX)
   set(IMGS_LIBRARY_PREFIX ${PREFIX} CACHE STRING "" FORCE)
 endfunction()
 
-# Function for adding a library to the build process.
-#
-# Arguments:
-#   LIB_NAME Name for the library
-#   SOURCES  Named parameter for the source files that go into the library
-#   HEADERS  Named parameter for the headers that go into the library
 function(rit_add_library LIB_NAME)
   set(options)
   set(oneValueArgs)
@@ -58,11 +48,6 @@ function(rit_add_library LIB_NAME)
   endif()
 endfunction()
 
-# Function for adding a header-only library to the build process.
-#
-# Arguments:
-#   LIB_NAME Name for the target
-#   HEADERS  Named parameter for the headers that go into the library
 function(rit_add_interface_library LIB_NAME)
   set(options)
   set(oneValueArgs)
@@ -84,4 +69,30 @@ function(rit_add_interface_library LIB_NAME)
       $<BUILD_INTERFACE:${CMAKE_BINARY_DIR}>
       $<INSTALL_INTERFACE:include>
   )
+endfunction()
+
+function(rit_add_conan_alias)
+  set(options)
+  set(oneValueArgs CONAN_TARGET ALIAS NAMESPACE)
+  set(multiValueArgs)
+  cmake_parse_arguments(rit_add_conan_alias "${options}" "${oneValueArgs}"
+                                            "${multiValueArgs}" ${ARGN})
+  if (rit_add_conan_alias_NAMESPACE)
+    add_library(
+      ${rit_add_conan_alias_NAMESPACE}_${rit_add_conan_alias_ALIAS}
+      INTERFACE)
+    target_link_libraries(
+      ${rit_add_conan_alias_NAMESPACE}_${rit_add_conan_alias_ALIAS}
+      INTERFACE CONAN_PKG::${rit_add_conan_alias_CONAN_TARGET})
+    add_library(
+      ${rit_add_conan_alias_NAMESPACE}::${rit_add_conan_alias_ALIAS}
+      ALIAS ${rit_add_conan_alias_NAMESPACE}_${rit_add_conan_alias_ALIAS})
+  else()
+    add_library(
+      ${rit_add_conan_alias_ALIAS}
+      INTERFACE)
+    target_link_libraries(
+      ${rit_add_conan_alias_ALIAS} 
+      INTERFACE CONAN_PKG::${rit_add_conan_alias_CONAN_TARGET})
+  endif()
 endfunction()

@@ -8,6 +8,6 @@ rit_add_library(numerical_interpolation
 
 target_link_libraries(numerical_interpolation
   PUBLIC
-    CONAN_PKG::eigen
+    Eigen3::Eigen
   PRIVATE
 )

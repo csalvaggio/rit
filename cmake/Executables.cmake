@@ -1,8 +1,3 @@
-# Function for adding an executable to the build process.
-#
-# Arguments:
-#   EXE_NAME Name for the executable
-#   SOURCES Named parameter for the source files that go into the executable
 function(rit_add_executable EXE_NAME)
   set(options)
   set(oneValueArgs)

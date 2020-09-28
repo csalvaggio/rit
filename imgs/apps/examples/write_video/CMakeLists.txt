@@ -4,5 +4,8 @@ rit_add_executable(write_video
 )
 
 target_link_libraries(write_video
-  CONAN_PKG::opencv
+  opencv_core
+  opencv_highgui
+  opencv_imgcodecs
+  opencv_videoio
 )

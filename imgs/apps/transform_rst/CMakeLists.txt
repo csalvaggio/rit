@@ -5,6 +5,9 @@ rit_add_executable(transform_rst
 
 target_link_libraries(transform_rst
   rit::ipcv_geometric_transformation 
-  CONAN_PKG::boost
-  CONAN_PKG::opencv
+  Boost::filesystem
+  Boost::program_options
+  opencv_core
+  opencv_highgui
+  opencv_imgcodecs
 )

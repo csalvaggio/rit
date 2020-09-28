@@ -5,5 +5,6 @@ rit_add_interface_library(gnuplot-iostream
 
 target_link_libraries(gnuplot-iostream
   INTERFACE
-    CONAN_PKG::boost
+    Boost::iostreams
+    Boost::system
 )

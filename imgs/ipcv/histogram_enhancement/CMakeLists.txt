@@ -10,7 +10,7 @@ rit_add_library(ipcv_histogram_enhancement
 
 target_link_libraries(ipcv_histogram_enhancement 
   PUBLIC 
-    CONAN_PKG::opencv
+    opencv_core
   PRIVATE
     rit::ipcv_utils
 )

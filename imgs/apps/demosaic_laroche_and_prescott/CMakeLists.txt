@@ -5,6 +5,9 @@ rit_add_executable(demosaic_laroche_and_prescott
 
 target_link_libraries(demosaic_laroche_and_prescott 
   rit::ipcv_demosaicing
-  CONAN_PKG::boost
-  CONAN_PKG::opencv
+  Boost::filesystem
+  Boost::program_options
+  opencv_core
+  opencv_highgui
+  opencv_imgcodecs
 )

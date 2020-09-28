@@ -4,5 +4,5 @@ rit_add_executable(craps
 )
 
 target_link_libraries(craps
-  CONAN_PKG::boost
+  Boost::program_options
 )

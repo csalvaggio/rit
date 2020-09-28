@@ -5,5 +5,7 @@ rit_add_executable(dist
 
 target_link_libraries(dist
   rit::ipcv_utils 
-  CONAN_PKG::opencv
+  opencv_core
+  opencv_highgui
+  opencv_imgcodecs
 )

@@ -6,6 +6,8 @@ rit_add_executable(plot_histogram
 target_link_libraries(plot_histogram 
   rit::ipcv_utils 
   rit::plot 
-  CONAN_PKG::boost
-  CONAN_PKG::opencv
+  Boost::filesystem
+  Boost::program_options
+  opencv_core
+  opencv_imgcodecs
 )

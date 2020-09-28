@@ -4,7 +4,10 @@ rit_add_executable(harris_corners
 )
 
 target_link_libraries(harris_corners
-  rit::ipcv_corners 
-  CONAN_PKG::boost
-  CONAN_PKG::opencv
+  rit::ipcv_corners
+  Boost::filesystem
+  Boost::program_options
+  opencv_core
+  opencv_highgui
+  opencv_imgcodecs
 )

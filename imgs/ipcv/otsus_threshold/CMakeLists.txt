@@ -7,7 +7,7 @@ rit_add_library(ipcv_otsus_threshold
 
 target_link_libraries(ipcv_otsus_threshold 
   PUBLIC 
-    CONAN_PKG::opencv
+    opencv_core
   PRIVATE
     rit::ipcv_utils
 )

@@ -5,6 +5,9 @@ rit_add_executable(quantize
 
 target_link_libraries(quantize 
   rit::ipcv_quantization
-  CONAN_PKG::boost
-  CONAN_PKG::opencv
+  Boost::filesystem
+  Boost::program_options
+  opencv_core
+  opencv_highgui
+  opencv_imgcodecs
 )

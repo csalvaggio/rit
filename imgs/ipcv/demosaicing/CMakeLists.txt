@@ -10,6 +10,6 @@ rit_add_library(ipcv_demosaicing
 
 target_link_libraries(ipcv_demosaicing
   PUBLIC 
-    CONAN_PKG::opencv
+    opencv_core
   PRIVATE
 )

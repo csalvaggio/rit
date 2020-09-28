@@ -4,6 +4,8 @@ rit_add_executable(display
 )
 
 target_link_libraries(display 
-  CONAN_PKG::boost
-  CONAN_PKG::opencv
+  Boost::filesystem
+  Boost::program_options
+  opencv_core
+  opencv_highgui
 )

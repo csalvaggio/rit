@@ -7,6 +7,6 @@ rit_add_library(ipcv_bilateral_filtering
 
 target_link_libraries(ipcv_bilateral_filtering 
   PUBLIC 
-    CONAN_PKG::opencv
+    opencv_core
   PRIVATE
 )

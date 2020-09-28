@@ -5,5 +5,5 @@ rit_add_interface_library(color_cie
 
 target_link_libraries(color_cie
   INTERFACE
-    CONAN_PKG::eigen
+    Eigen3::Eigen
 )

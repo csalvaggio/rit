@@ -5,6 +5,9 @@ rit_add_executable(fast_corners
 
 target_link_libraries(fast_corners
   rit::ipcv_corners 
-  CONAN_PKG::boost
-  CONAN_PKG::opencv
+  Boost::filesystem
+  Boost::program_options
+  opencv_core
+  opencv_highgui
+  opencv_imgcodecs
 )

@@ -14,7 +14,7 @@ rit_add_library(ipcv_geometric_transformation
 
 target_link_libraries(ipcv_geometric_transformation 
   PUBLIC 
-    CONAN_PKG::eigen
-    CONAN_PKG::opencv
+    Eigen3::Eigen
+    opencv_core
   PRIVATE
 )

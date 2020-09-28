@@ -6,5 +6,5 @@ rit_add_executable(plot3d
 target_link_libraries(plot3d
   rit::ipcv_utils 
   rit::plot 
-  CONAN_PKG::opencv
+  opencv_core
 )

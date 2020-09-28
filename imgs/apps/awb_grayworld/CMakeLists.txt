@@ -5,6 +5,9 @@ rit_add_executable(awb_grayworld
 
 target_link_libraries(awb_grayworld 
   rit::ipcv_utils
-  CONAN_PKG::boost
-  CONAN_PKG::opencv
+  Boost::filesystem
+  Boost::program_options
+  opencv_core
+  opencv_highgui
+  opencv_imgcodecs
 )

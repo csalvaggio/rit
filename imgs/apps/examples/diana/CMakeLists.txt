@@ -4,5 +4,5 @@ rit_add_executable(diana
 )
 
 target_link_libraries(diana
-  CONAN_PKG::boost
+  Boost::program_options
 )

@@ -7,6 +7,6 @@ rit_add_library(ipcv_quantization
 
 target_link_libraries(ipcv_quantization 
   PUBLIC 
-    CONAN_PKG::opencv
+    opencv_core
   PRIVATE
 )

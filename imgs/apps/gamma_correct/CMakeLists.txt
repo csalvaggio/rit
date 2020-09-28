@@ -5,6 +5,9 @@ rit_add_executable(gamma_correct
 
 target_link_libraries(gamma_correct 
   rit::ipcv_utils
-  CONAN_PKG::boost
-  CONAN_PKG::opencv
+  Boost::filesystem
+  Boost::program_options
+  opencv_core
+  opencv_highgui
+  opencv_imgcodecs
 )

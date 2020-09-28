@@ -5,6 +5,9 @@ rit_add_executable(spatial_filter
 
 target_link_libraries(spatial_filter 
   rit::ipcv_spatial_filtering
-  CONAN_PKG::boost
-  CONAN_PKG::opencv
+  Boost::filesystem
+  Boost::program_options
+  opencv_core
+  opencv_highgui
+  opencv_imgcodecs
 )

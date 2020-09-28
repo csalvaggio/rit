@@ -1,6 +1,3 @@
-# Configure the compiler options
-# ------------------------------
-
 include_guard(GLOBAL)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")

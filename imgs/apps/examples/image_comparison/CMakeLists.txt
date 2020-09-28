@@ -5,5 +5,8 @@ rit_add_executable(image_comparison
 
 target_link_libraries(image_comparison
   rit::ipcv_utils 
-  CONAN_PKG::opencv
+  opencv_core
+  opencv_highgui
+  opencv_imgcodecs
+  opencv_imgproc
 )

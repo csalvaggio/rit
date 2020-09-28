@@ -34,6 +34,7 @@ rit_add_library(ipcv_utils
 
 target_link_libraries(ipcv_utils
   PUBLIC
-    CONAN_PKG::opencv
+    opencv_core
+    opencv_imgproc
   PRIVATE
 )

@@ -9,6 +9,7 @@ rit_add_library(ipcv_corners
 
 target_link_libraries(ipcv_corners 
   PUBLIC 
-    CONAN_PKG::opencv
+    opencv_core
+    opencv_imgproc
   PRIVATE
 )

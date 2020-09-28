@@ -13,7 +13,7 @@ rit_add_library(plot SOURCES ${SRCS} HEADERS ${HDRS})
 target_link_libraries(plot
   PUBLIC
     rit::gnuplot-iostream
-    CONAN_PKG::eigen
-    CONAN_PKG::opencv
+    Eigen3::Eigen
+    opencv_core
   PRIVATE
 )
