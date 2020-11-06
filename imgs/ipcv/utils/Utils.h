@@ -10,6 +10,7 @@
 #include "imgs/ipcv/utils/ApplyLut.h"
 #include "imgs/ipcv/utils/DeltaE.h"
 #include "imgs/ipcv/utils/Dft.h"
+#include "imgs/ipcv/utils/Dft2.h"
 #include "imgs/ipcv/utils/DftMagnitude.h"
 #include "imgs/ipcv/utils/DftMultiply.h"
 #include "imgs/ipcv/utils/DftShift.h"

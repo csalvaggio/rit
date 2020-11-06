@@ -1,20 +1,19 @@
-/** Implementation file for computing the DFT of a vector
+/** Implementation file for computing the 2D DFT of a matrix
  *
- *  \file ipcv/utils/Dft.cpp
+ *  \file ipcv/utils/Dft2.cpp
  *  \author Carl Salvaggio, Ph.D. (salvaggio@cis.rit.edu)
  *  \date 05 November 2020
  */
 
-#include "Dft.h"
+#include "Dft2.h"
 
 namespace ipcv {
 
-cv::Mat Dft(cv::Mat f, const int flag) {
-  const std::complex<double> i(0, 1);
-
+cv::Mat Dft2(cv::Mat f, const int flag) {
   // Create the output cv::Mat (double-precision complex)
-  int N = f.rows;
-  cv::Mat F(N, 1, CV_64FC2);
+  int M = f.rows;
+  int N = f.cols;
+  cv::Mat F(M, N, CV_64FC2);
 
   // Determine if the input cv::Mat is already complex (CV_64FC2).
   // If it is, create a shared pointer to the original data so no new
@@ -45,9 +44,13 @@ cv::Mat Dft(cv::Mat f, const int flag) {
     cv::merge(channels, f_complex);
   }
 
+  // Use the seperable nature of the 2-dimensional DFT to compute the
+  // transformation by computing the column transforms for the original
+  // matrix, followed by the row transforms of the column transformed
+  // coefficients
+
 
   // INSERT YOUR CODE HERE
-  // To compute the forward and inverse DFT on a cv::Mat of dimension Nx1
 
 
   return F;

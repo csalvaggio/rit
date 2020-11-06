@@ -1,6 +1,4 @@
-#include <complex>
 #include <iostream>
-#include <vector>
 
 #include <opencv2/core.hpp>
 #include <opencv2/highgui.hpp>
@@ -11,28 +9,22 @@
 using namespace std;
 
 int main() {
-  // Set up parameters for 1-dimensional DFT testing
   size_t N = 32;
-  size_t repetitions = 100000;
+  size_t repetitions = 10000;
 
-  // Create and display the original 1-dimensional function using a
-  // vector of double-precision complex values
-  vector<complex<double>> f(N);
-  for (size_t idx = 0; idx < N; idx++) {
-    f[idx] = 1;
-  }
-  cout << "Original function:" << endl;
-  for (size_t idx = 0; idx < N; idx++) {
-    cout << "f[" << idx << "]: " << f[idx] << endl;
-  }
+  // Create and display the original 1-dimensional function (constant)
+  auto f = cv::Mat::ones(N, 1, CV_64FC2);
+  cout << "Original function (1D):" << endl;
+  cout << f << endl;
   cout << endl;
 
-  // Perform 1-dimensional DFT and time multiple repititions
-  vector<complex<double>> F = ipcv::Dft(f, ipcv::DFT_SCALE);
-  cout << "Fourier transform:" << endl;
-  for (size_t idx = 0; idx < N; idx++) {
-    cout << "F[" << idx << "]: " << F[idx] << endl;
-  }
+  // Perform 1-dimensional DFT
+  cv::Mat F = ipcv::Dft(f, ipcv::DFT_SCALE);
+  cout << "Fourier transform (1D):" << endl;
+  cout << F << endl;
+  cout << endl;
+
+  // Time multiple repititions of the 1-dimensional DFT
   clock_t startTime = clock();
   for (size_t idx = 0; idx < repetitions; idx++) {
     F = ipcv::Dft(f, ipcv::DFT_SCALE);
@@ -42,99 +34,93 @@ int main() {
        << (endTime - startTime) / static_cast<double>(CLOCKS_PER_SEC)
        << " [s] for " 
        << repetitions
-       << " repetitions"
+       << " repetitions (using ipcv:Dft)"
        << endl;
-  cout << endl;
 
-  // Perform 1-dimensional inverse DFT and time multiple repititions
-  f = ipcv::Dft(F, ipcv::DFT_INVERSE);
-  cout << "Inverse Fourier transform:" << endl;
-  for (size_t idx = 0; idx < N; idx++) {
-    cout << "f[" << idx << "]: " << f[idx] << endl;
-  }
+  // Time multiple repititions of the 1-dimensional DFT using cv::Dft
   startTime = clock();
   for (size_t idx = 0; idx < repetitions; idx++) {
-    f = ipcv::Dft(F, ipcv::DFT_INVERSE);
+    cv::dft(f, F, cv::DFT_COMPLEX_OUTPUT + cv::DFT_SCALE);
   }
   endTime = clock();
   cout << "Elapsed time: "
        << (endTime - startTime) / static_cast<double>(CLOCKS_PER_SEC)
        << " [s] for " 
        << repetitions
-       << " repetitions"
+       << " repetitions (using cv::Dft)"
        << endl;
   cout << endl;
 
-  // Create and display the original 1-dimensional function using cv::Mat
-  cv::Mat f_Mat = cv::Mat::ones(N, 1, CV_64F);
-  cout << "Original function (cv::Mat):" << endl;
-  cout << "f:\n" << f_Mat << endl;
+  // Perform inverse 1-dimensional DFT
+  cv::Mat inverse = ipcv::Dft(F, ipcv::DFT_INVERSE);
+  cout << "Inverse Fourier transform (1D):" << endl;
+  cout << inverse << endl;
   cout << endl;
 
-  // Perform 1-dimensional DFT and time multiple repititions (OpenCV)
-  cv::Mat F_Mat;
-
-
-  // *************************************************************************
-  // INSERT YOUR CODE HERE
-  // to compute the DFT using the OpenCV cv::dft function
-  // *************************************************************************
-
-
-  cout << "Fourier transform (OpenCV):" << endl;
-  cout << "F:\n" << F_Mat << endl;
+  // Time multiple repititions of the inverse 1-dimensional DFT
   startTime = clock();
   for (size_t idx = 0; idx < repetitions; idx++) {
-
-
-     // **********************************************************************
-     // INSERT YOUR CODE HERE
-     // (same as above)
-     // **********************************************************************
-
-
+    inverse = ipcv::Dft(F, ipcv::DFT_INVERSE);
   }
   endTime = clock();
   cout << "Elapsed time: "
        << (endTime - startTime) / static_cast<double>(CLOCKS_PER_SEC)
        << " [s] for " 
        << repetitions
-       << " repetitions"
+       << " repetitions (using ipcv:Dft)"
        << endl;
-  cout << endl;
 
-  // Perform 1-dimensional inverse DFT and time multiple repititions (OpenCV)
-
-
-  // *************************************************************************
-  // INSERT YOUR CODE HERE
-  // to compute the inverse DFT using the OpenCV cv::dft function
-  // *************************************************************************
-
-
-  cout << "Inverse Fourier transform (OpenCV):" << endl;
-  cout << "f:\n" << f_Mat << endl;
+  // Time multiple repititions of the inverse 1-dimensional DFT using cv::Dft
   startTime = clock();
   for (size_t idx = 0; idx < repetitions; idx++) {
-
-
-     // **********************************************************************
-     // INSERT YOUR CODE HERE
-     // (same as above)
-     // **********************************************************************
-
-
+    cv::dft(f, F, cv::DFT_REAL_OUTPUT + cv::DFT_INVERSE);
   }
   endTime = clock();
   cout << "Elapsed time: "
        << (endTime - startTime) / static_cast<double>(CLOCKS_PER_SEC)
        << " [s] for " 
        << repetitions
-       << " repetitions"
+       << " repetitions (using cv::Dft)"
        << endl;
   cout << endl;
 
-  // Read image in to cv::Mat
+
+  N = 8;
+
+  // Create and display the original 2-dimensional function (constant)
+  auto m = cv::Mat::ones(N, N, CV_64FC2);
+  cout << "Original function (2D):" << endl;
+  cout << m << endl;
+  cout << endl;
+
+  // Perform 2-dimensional DFT
+  cv::Mat M;
+  M = ipcv::Dft2(m, ipcv::DFT_SCALE);
+  cout << "Fourier transform (2D): (using ipcv:Dft)" << endl;
+  cout << M << endl;
+  cout << endl;
+
+  // Perform 2-dimensional DFT using cv::Dft
+  cv::dft(m, M, cv::DFT_COMPLEX_OUTPUT + cv::DFT_SCALE);
+  cout << "Fourier transform (2D): (using cv::Dft)" << endl;
+  cout << M << endl;
+  cout << endl;
+
+  // Perform inverse 2-dimensional DFT
+  cv::Mat m_inv;
+  m_inv = ipcv::Dft2(M, ipcv::DFT_INVERSE);
+  cout << "Inverse Fourier transform (2D): (using ipcv:Dft)" << endl;
+  cout << m_inv << endl;
+  cout << endl;
+
+  // Perform inverse 2-dimensional DFT using cv::Dft
+  cv::dft(M, m_inv, cv::DFT_REAL_OUTPUT + cv::DFT_INVERSE);
+  cout << "Inverse Fourier transform (2D): (using cv::Dft)" << endl;
+  cout << m_inv << endl;
+  cout << endl;
+
+
+  // Read image into cv::Mat
   string filename = "../data/images/misc/lenna_grayscale.pgm";         
   cv::Mat src;
   src = cv::imread(filename, cv::IMREAD_UNCHANGED);
@@ -142,47 +128,51 @@ int main() {
   cout << filename << endl;
   cout << endl;
 
-  // Perform 2-dimensional DFT and time execution (OpenCV)
+  // Perform 2-dimensional DFT and time execution
   cv::Mat dft_input;
   cv::Mat dft_output;
   src.convertTo(dft_input, CV_64F);
   startTime = clock();
-
-
-  // *************************************************************************
-  // INSERT YOUR CODE HERE
-  // to compute the DFT using the OpenCV cv::dft function
-  // *************************************************************************
-
-
+  cv::dft(dft_input, dft_output, cv::DFT_COMPLEX_OUTPUT + cv::DFT_SCALE);
   endTime = clock();
-  cout << "Fourier transform (OpenCV):" << endl;
+  cout << "Fourier transform (2D):" << endl;
   cout << "Elapsed time: "
        << (endTime - startTime) / static_cast<double>(CLOCKS_PER_SEC)
-       << " [s]" 
+       << " [s] (using cv::Dft)" 
+       << endl;
+
+  startTime = clock();
+  dft_output = ipcv::Dft2(dft_input, ipcv::DFT_SCALE);
+  endTime = clock();
+  cout << "Elapsed time: "
+       << (endTime - startTime) / static_cast<double>(CLOCKS_PER_SEC)
+       << " [s] (using ipcv:Dft)" 
        << endl;
   cout << endl;
 
-  // Perform 2-dimensional inverse DFT and time execution (OpenCV)
+  // Perform inverse 2-dimensional DFT and time execution
   cv::Mat idft_output;
   startTime = clock();
-
-
-  // *************************************************************************
-  // INSERT YOUR CODE HERE
-  // to compute the inverse DFT using the OpenCV cv::dft function
-  // *************************************************************************
-
-
+  cv::dft(dft_output, idft_output, cv::DFT_REAL_OUTPUT + cv::DFT_INVERSE);
   endTime = clock();
-  cout << "Inverse Fourier transform (OpenCV):" << endl;
+  cout << "Inverse Fourier transform (2D):" << endl;
   cout << "Elapsed time: "
        << (endTime - startTime) / static_cast<double>(CLOCKS_PER_SEC)
-       << " [s]" 
+       << " [s] (using cv::Dft)" 
+       << endl;
+
+  startTime = clock();
+  idft_output = ipcv::Dft2(dft_output, ipcv::DFT_INVERSE);
+  endTime = clock();
+  cout << "Elapsed time: "
+       << (endTime - startTime) / static_cast<double>(CLOCKS_PER_SEC)
+       << " [s] (using ipcv:Dft)" 
        << endl;
   cout << endl;
+
   cv::Mat idft_output_display;
-  idft_output.convertTo(idft_output_display, CV_8U); 
+  ipcv::DftMagnitude(idft_output).convertTo(idft_output_display, CV_8U); 
+
 
   // Report out diagnotic values for the 2-dimension DFT runs
   double src_min;
@@ -216,15 +206,16 @@ int main() {
   cout << "iDFT (min): " << idft_output_min << endl;
   cout << "iDFT (max): " << idft_output_max << endl;
 
+
   // Display the original image, the log|DFT|, and the inverse DFT
-
-
-  // *************************************************************************
-  // INSERT YOUR CODE HERE
-  // to display the original image, the centered log|DFT|, and the inverse
-  // transformation result image
-  // *************************************************************************
-
+  cv::imshow("Source", src);
+  cv::imshow("log|DFT|", 
+             ipcv::DftMagnitude(dft_output, 
+                                ipcv::DFT_MAGNITUDE_LOG + 
+                                ipcv::DFT_MAGNITUDE_CENTER + 
+                                ipcv::DFT_MAGNITUDE_NORMALIZE));
+  cv::imshow("iDFT", idft_output_display);
+  cv::waitKey(0);
 
   return EXIT_SUCCESS;
 }

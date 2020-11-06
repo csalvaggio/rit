@@ -1,14 +1,15 @@
-/** Interface file for computing the DFT of a complex vector
+/** Interface file for computing the DFT of a vector
  *
  *  \file ipcv/utils/Dft.h
  *  \author Carl Salvaggio, Ph.D. (salvaggio@cis.rit.edu)
- *  \date 14 Nov 2018
+ *  \date 05 November 2020
  */
 
 #pragma once
 
 #include <complex>
-#include <vector>
+
+#include <opencv2/core.hpp>
 
 namespace ipcv {
 
@@ -18,16 +19,15 @@ enum DftFlags {
   DFT_SCALE = 2
 };
 
-/** Compute the DFT of a std::complex<double> vector
+/** Compute the DFT of a complex vector (cv::Mat)
  *
- *  \param[in] f     complex function of type std::vector<std::complex<double>>
+ *  \param[in] f     function of type cv::Mat (N x 1)
  *  \param[in] flag  bitwise options flag (see enum above)
  *                     1 - inverse transform should occur
  *                     2 - scaling should occur
  *
- *  \return          std::vector<std::complex<double>> containing the DFT
- *                   of provided function
+ *  \return          cv::Mat containing the DFT of provided function
+ *                   (CV_64FC2 - double-precision complex)
  */
-std::vector<std::complex<double>> Dft(
-    const std::vector<std::complex<double>>& f, int flag = 0);
+cv::Mat Dft(cv::Mat f, const int flag = 0);
 }

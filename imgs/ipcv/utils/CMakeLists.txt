@@ -3,6 +3,7 @@ rit_add_library(ipcv_utils
     ApplyLut.cpp
     DeltaE.cpp
     Dft.cpp
+    Dft2.cpp
     DftMagnitude.cpp
     DftMultiply.cpp
     DftShift.cpp
@@ -18,6 +19,7 @@ rit_add_library(ipcv_utils
     ApplyLut.h
     DeltaE.h
     Dft.h
+    Dft2.h
     DftMagnitude.h
     DftMultiply.h
     DftShift.h
