@@ -109,7 +109,7 @@ class Params {
   };
 
  private:
-  std::string terminal_type_ = "x11";
+  std::string terminal_type_ = "qt";
   std::string font_face_ = "Courier";
   int font_size_ = 12;
   std::string x_label_ = "";
