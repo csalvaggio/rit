@@ -9,3 +9,8 @@ rit_add_executable(test_triangle
     Triangle.cpp
 )
 
+rit_add_executable(test_circle
+  SOURCES
+    test_circle.cpp
+)
+
