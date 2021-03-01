@@ -13,7 +13,8 @@ and be sure to include <span style="font-family:Courier">rit::plot</span> in the
 To compile code using the provided plotting functions based on the
 gnuplot streaming library, use the following command on the CIS servers.
 
-    # g++ -Isrc/cpp/rit/imgs/plot -I/usr/local/include/opencv4 -Isrc/cpp/rit -L/usr/lib64 -lboost_iostreams -lopencv_core -o <your binary name> <your source name>.cpp src/cpp/rit/imgs/plot/plot2d/Plot2d.cpp src/cpp/rit/imgs/plot/plot2d/Params.cpp src/cpp/rit/imgs/plot/plot3d/Plot3d.cpp src/cpp/rit/imgs/plot/plot3d/Params.cpp
+    g++ -Isrc/cpp/rit -I/usr/local/include/opencv4 -I/usr/include/eigen3 -lboost_iostreams -lopencv_core -o <your binary name> <your source name>.cpp src/cpp/rit/imgs/plot/plot2d/Plot2d.cpp src/cpp/rit/imgs/plot/plot2d/Params.cpp src/cpp/rit/imgs/plot/plot3d/Plot3d.cpp src/cpp/rit/imgs/plot/plot3d/Params.cpp
+    
 
 This command assumes the recommended directory structure has been followed, namely
 
