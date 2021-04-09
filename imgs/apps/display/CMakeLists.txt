@@ -8,4 +8,5 @@ target_link_libraries(display
   Boost::program_options
   opencv_core
   opencv_highgui
+  opencv_imgcodecs
 )

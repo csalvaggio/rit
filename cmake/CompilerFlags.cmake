@@ -1,6 +1,6 @@
 include_guard(GLOBAL)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-psabi")
 
 # Enable the compiler cache
 if (NOT WIN32)

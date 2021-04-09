@@ -5,4 +5,5 @@ rit_add_interface_library(utils_file_csvfile
 
 target_link_libraries(utils_file_csvfile
   INTERFACE 
+    std::filesystem
 )

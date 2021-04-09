@@ -15,15 +15,16 @@ int main() {
   const string videoFilename = "movie.mpg";
 
   cv::VideoWriter video;
-  int apiPreference = cv::CAP_FFMPEG;
+  // int apiPreference = cv::CAP_FFMPEG;
   int fourcc = cv::VideoWriter::fourcc('M', 'P', 'E', 'G');
   double fps = 30;
   cv::Size frameSize = cv::Size(src.cols, src.rows);
   bool isColor = false;
-  video.open(videoFilename, apiPreference, fourcc, fps, frameSize, isColor);
+  // video.open(videoFilename, apiPreference, fourcc, fps, frameSize, isColor);
+  video.open(videoFilename, fourcc, fps, frameSize, isColor);
 
   cv::Mat frame = src.clone();
-  for (int idx=0; idx<256; idx++) {
+  for (int idx = 0; idx < 256; idx++) {
     video.write(frame);
     frame -= 1;
   }
