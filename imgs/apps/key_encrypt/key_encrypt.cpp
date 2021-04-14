@@ -11,10 +11,10 @@ int main() {
   // string key = "imgs";
   // string str = "Hello World!!!";
   // string key = "Salvaggio";
-  // string str = "!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+  // string str = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
 
-  auto encrypted_str = ipcv::Encrypt(key, str);
-  auto decrypted_str = ipcv::Decrypt(key, encrypted_str);
+  auto encrypted_str = ipcv::KeyEncrypt(key, str);
+  auto decrypted_str = ipcv::KeyDecrypt(key, encrypted_str);
 
   cout << "Encryption Key:   " << endl << key << endl;
   cout << endl;

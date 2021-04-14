@@ -9,7 +9,7 @@
 
 namespace ipcv {
 
-std::string Encrypt(const std::string& key, const std::string& str) {
+std::string KeyEncrypt(const std::string& key, const std::string& str) {
   std::string encrypted_str;
   encrypted_str.reserve(str.size());
 
@@ -18,7 +18,7 @@ std::string Encrypt(const std::string& key, const std::string& str) {
   return encrypted_str;
 }
 
-std::string Decrypt(const std::string& key, const std::string& str) {
+std::string KeyDecrypt(const std::string& key, const std::string& str) {
   std::string decrypted_str;
   decrypted_str.reserve(str.size());
 

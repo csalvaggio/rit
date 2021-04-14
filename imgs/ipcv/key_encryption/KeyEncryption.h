@@ -18,7 +18,7 @@ namespace ipcv {
  *
  *  \return   the encrypted string
  */
-std::string Encrypt(const std::string& key, const std::string& str);
+std::string KeyEncrypt(const std::string& key, const std::string& str);
 
 /** Perform key decryption of provided string
  *
@@ -27,5 +27,6 @@ std::string Encrypt(const std::string& key, const std::string& str);
  *
  *  \return   the decrypted string
  */
-std::string Decrypt(const std::string& key, const std::string& encrypted_str);
+std::string KeyDecrypt(const std::string& key,
+                       const std::string& encrypted_str);
 }
