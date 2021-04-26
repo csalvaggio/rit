@@ -28,20 +28,22 @@ Here is an example code using <span style="font-family:Courier">Interp1</span> t
         y[idx] = pow(x[idx], 2);
       }
 
-      Eigen::VectorXd xhat(4);
-      xhat << 1.7, 4, 6.2, 7.8;
+      Eigen::VectorXd xhat(6);
+      xhat << 0, 1.7, 4, 6.2, 7.8, 10;
 
       Eigen::VectorXd yhat = numerical::Interp1(xhat, x, y);
 
       cout << "Original data:" << endl;
-      for (int idx = 0; idx < x.size(); idx++) {
+      for (size_t idx = 0; idx < static_cast<size_t>(x.size()); idx++) {
         cout << x[idx] << ", " << y[idx] << endl;
       }
+      cout << endl;
 
       cout << "Interpolated data:" << endl;
-      for (int idx = 0; idx < xhat.size(); idx++) {
+      for (size_t idx = 0; idx < static_cast<size_t>(xhat.size()); idx++) {
         cout << xhat[idx] << ", " << yhat[idx] << endl;
       }
+      cout << endl;
     }
 
 # FUNCTIONS

@@ -2,7 +2,7 @@
  *
  *  \file numerical/interpolation/Interp1.cpp
  *  \author Carl Salvaggio, Ph.D. (salvaggio@cis.rit.edu)
- *  \date 21 February 2020
+ *  \date 26 April 2021
  */
 
 #include <stdexcept>
@@ -44,9 +44,13 @@ Eigen::VectorXd Interp1(const Eigen::VectorXd& xhat, const Eigen::VectorXd& x,
     if (xhat[idx] < x[middle]) {
       middle = middle - 1;
     }
-    yhat[idx] = (y[middle + 1] - y[middle]) / (x[middle + 1] - x[middle]) *
-                    (xhat[idx] - x[middle]) +
-                y[middle];
+    if (middle == static_cast<size_t>(x.size() - 1)) {
+      yhat[idx] = y[middle];
+    } else {
+      yhat[idx] = (y[middle + 1] - y[middle]) / (x[middle + 1] - x[middle]) *
+                      (xhat[idx] - x[middle]) +
+                  y[middle];
+    }
 
     /*
     // Linear search for interpolation interval (no sort order assumption)
