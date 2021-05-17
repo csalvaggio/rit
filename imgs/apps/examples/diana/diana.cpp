@@ -9,10 +9,10 @@ namespace po = boost::program_options;
 
 class OneTimePad {
   // Private data members
-  size_t key_;
-  size_t rows_;
-  size_t words_per_row_;
-  size_t characters_per_word_;
+  std::size_t key_;
+  std::size_t rows_;
+  std::size_t words_per_row_;
+  std::size_t characters_per_word_;
   string one_time_pad_;
 
   // Public methods
@@ -26,15 +26,16 @@ class OneTimePad {
   //   the number of words in each row of the one-time pad crypto-table
   // characters_per_word
   //   the number of characters in each word of the one-time pad crypto-table
-  OneTimePad(size_t key, size_t rows, size_t words_per_row,
-             size_t characters_per_word) {
+  OneTimePad(std::size_t key, std::size_t rows, std::size_t words_per_row,
+             std::size_t characters_per_word) {
     key_ = key;
     rows_ = rows;
     words_per_row_ = words_per_row;
     characters_per_word_ = characters_per_word;
 
     srand(key_);
-    for (size_t i = 0; i < rows_ * words_per_row_ * characters_per_word_; i++) {
+    for (std::size_t i = 0; i < rows_ * words_per_row_ * characters_per_word_;
+         i++) {
       int p_random = rand() % 26;
       char random_character = char(p_random + 65);
       one_time_pad_ += random_character;
@@ -68,13 +69,14 @@ class OneTimePad {
   int find(string needle) { return one_time_pad_.find(needle); }
 
   // Method to extract a sub-string of characters from the table
-  string substr(size_t position, size_t length) {
+  string substr(std::size_t position, std::size_t length) {
     return one_time_pad_.substr(position, length);
   }
 
   // A pretty print method for the one-time pad table
   void print() {
-    for (size_t i = 0; i < rows_ * words_per_row_ * characters_per_word_; i++) {
+    for (std::size_t i = 0; i < rows_ * words_per_row_ * characters_per_word_;
+         i++) {
       if (i != 0) {
         if (i % (words_per_row_ * characters_per_word_) == 0) {
           cout << endl;
@@ -164,7 +166,7 @@ int main(int argc, char* argv[]) {
   // Find the provided word pair in the one-time pad
   string one_time_pad_word_pair =
       message.substr(0, 2 * one_time_pad.characters_per_word());
-  size_t one_time_pad_word_pair_position =
+  std::size_t one_time_pad_word_pair_position =
       one_time_pad.find(one_time_pad_word_pair);
   if (one_time_pad_word_pair_position == string::npos) {
     // If the word pair was not found, set position to 0, this will give

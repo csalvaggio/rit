@@ -25,12 +25,13 @@ Eigen::VectorXd Interp1(const Eigen::VectorXd& xhat, const Eigen::VectorXd& x,
     throw std::runtime_error(msg);
   }
 
-  for (size_t idx = 0; idx < static_cast<size_t>(xhat.size()); idx++) {
+  for (std::size_t idx = 0; idx < static_cast<std::size_t>(xhat.size());
+       idx++) {
     // Binary search for interpolation interval (assumes ascending sort order)
     // Running time classification: O(log2 n)
-    size_t low = 0;
-    size_t high = x.size() - 1;
-    size_t middle;
+    std::size_t low = 0;
+    std::size_t high = x.size() - 1;
+    std::size_t middle;
     while (low <= high) {
       middle = (low + high) / 2;
       if (xhat[idx] > x[middle]) {
@@ -44,7 +45,7 @@ Eigen::VectorXd Interp1(const Eigen::VectorXd& xhat, const Eigen::VectorXd& x,
     if (xhat[idx] < x[middle]) {
       middle = middle - 1;
     }
-    if (middle == static_cast<size_t>(x.size() - 1)) {
+    if (middle == static_cast<std::size_t>(x.size() - 1)) {
       yhat[idx] = y[middle];
     } else {
       yhat[idx] = (y[middle + 1] - y[middle]) / (x[middle + 1] - x[middle]) *
@@ -55,7 +56,8 @@ Eigen::VectorXd Interp1(const Eigen::VectorXd& xhat, const Eigen::VectorXd& x,
     /*
     // Linear search for interpolation interval (no sort order assumption)
     // Running time classification: O(n)
-    for (size_t jdx = 0; jdx < static_cast<size_t>(x.size() - 1); jdx++) {
+    for (std::size_t jdx = 0; jdx < static_cast<std::size_t>(x.size() - 1);
+         jdx++) {
       if (((x[jdx] <= xhat[idx]) && (xhat[idx] <= x[jdx + 1])) ||
           ((x[jdx + 1] <= xhat[idx]) && (xhat[idx] <= x[jdx]))) {
         yhat[idx] = (y[jdx + 1] - y[jdx]) / (x[jdx + 1] - x[jdx]) *

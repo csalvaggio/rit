@@ -42,17 +42,17 @@ std::vector<int> Range(int a, int b) {
   return v;
 }
 
-std::vector<double> Range(double a, double b, size_t n) {
+std::vector<double> Range(double a, double b, std::size_t n) {
   std::vector<double> v;
   v.reserve(n);
   double increment = (b - a) / (n - 1);
-  for (size_t idx = 0; idx < n; idx++) {
+  for (std::size_t idx = 0; idx < n; idx++) {
     v.push_back(a + idx * increment);
   }
   return v;
 }
 
-std::vector<int> Range(size_t n) {
+std::vector<int> Range(std::size_t n) {
   return Range(0, n - 1);
 }
 

@@ -34,13 +34,15 @@ Here is an example code using <span style="font-family:Courier">Interp1</span> t
       Eigen::VectorXd yhat = numerical::Interp1(xhat, x, y);
 
       cout << "Original data:" << endl;
-      for (size_t idx = 0; idx < static_cast<size_t>(x.size()); idx++) {
+      for (std::size_t idx = 0; idx < static_cast<std::size_t>(x.size());
+           idx++) {
         cout << x[idx] << ", " << y[idx] << endl;
       }
       cout << endl;
 
       cout << "Interpolated data:" << endl;
-      for (size_t idx = 0; idx < static_cast<size_t>(xhat.size()); idx++) {
+      for (std::size_t idx = 0; idx < static_cast<std::size_t>(xhat.size());
+           idx++) {
         cout << xhat[idx] << ", " << yhat[idx] << endl;
       }
       cout << endl;

@@ -142,7 +142,7 @@ int main(int argc, char* argv[]) {
       if (buffer == "") {
         break;
       }
-      size_t size;
+      std::size_t size;
       sc.push_back(stof(buffer, &size));
       buffer = buffer.substr(size);
       sr.push_back(stof(buffer, &size));
@@ -161,7 +161,7 @@ int main(int argc, char* argv[]) {
 
   vector<cv::Point> src_points(sc.size());
   vector<cv::Point> map_points(mc.size());
-  for (size_t point = 0; point < sc.size(); point++) {
+  for (std::size_t point = 0; point < sc.size(); point++) {
     src_points[point].x = sc[point];
     src_points[point].y = sr[point];
     map_points[point].x = mc[point];

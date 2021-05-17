@@ -195,9 +195,9 @@ The ``terminal_type`` may be any valid terminal for your Gnuplot installation.  
 ###### Accessor and mutator for the linestyle member
 
     int linestyle() const;
-    int linestyle(size_t series_idx) const;
+    int linestyle(std::size_t series_idx) const;
     void set_linestyle(int linestyle);
-    void set_linestyle(size_t series_idx, int linestyle);
+    void set_linestyle(std::size_t series_idx, int linestyle);
 
 where linestyle can take on <span style="font-family:Courier">\<object\>.POINTS</span>, <span style="font-family:Courier">\<object\>.LINES</span>, or the sum <span style="font-family:Courier">\<object>.LINES + \<object\>.POINTS</span>.
 
@@ -311,7 +311,7 @@ if not specified, the default is 10 x 10.
      */
     template <class CALLABLE>
     void Plot2d(const CALLABLE f, plot::plot2d::Params params,
-                size_t n = 100);
+                std::size_t n = 100);
 
 ### Convenience functions for plotting (plot::plot3d)
 
@@ -414,8 +414,8 @@ if not specified, the default is 10 x 10.
      *     representation of the function [default is 100]
      */
     template <class CALLABLE>
-    void Plot3d(const CALLABLE f, plot::plot3d::Params params, size_t nx = 100,
-                size_t ny = 100) {
+    void Plot3d(const CALLABLE f, plot::plot3d::Params params, 
+                std::size_t nx = 100, std::size_t ny = 100) {
 
 # REQUIREMENTS
 * C++ compiler that supports C++17 dialect/ISO standard

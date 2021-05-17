@@ -32,13 +32,13 @@ void set_common_parameters(std::string& gp_msg, const plot2d::Params& params);
  *      callback function to deliver x and y data series
  */
 template <class Callable>
-void Plot2d(size_t number_of_data_series, const plot2d::Params& params,
+void Plot2d(std::size_t number_of_data_series, const plot2d::Params& params,
             Callable callback) {
   std::string gp_msg;
-  for (size_t series_idx = 0; series_idx < number_of_data_series;
+  for (std::size_t series_idx = 0; series_idx < number_of_data_series;
        series_idx++) {
     gp_msg += "$data" + std::to_string(series_idx) + " << EOD\n";
-    size_t point_idx = 0;
+    std::size_t point_idx = 0;
     double x;
     double y;
     while (callback(series_idx, point_idx++, x, y)) {
@@ -49,7 +49,7 @@ void Plot2d(size_t number_of_data_series, const plot2d::Params& params,
 
   set_common_parameters(gp_msg, params);
 
-  for (size_t series_idx = 0; series_idx < number_of_data_series;
+  for (std::size_t series_idx = 0; series_idx < number_of_data_series;
        series_idx++) {
     if (series_idx == 0) {
       gp_msg += "plot $data" + std::to_string(series_idx);
@@ -106,7 +106,8 @@ template <class T1, class T2>
 void Plot2d(const std::vector<T1>& x, const std::vector<T2>& y,
             const plot2d::Params& params) {
   Plot2d(1, params,
-         [&](size_t, size_t point_idx, double& x_value, double& y_value) {
+         [&](std::size_t, std::size_t point_idx, double& x_value,
+             double& y_value) {
            if (point_idx < x.size()) {
              x_value = x[point_idx];
              y_value = y[point_idx];
@@ -130,7 +131,7 @@ void Plot2d(const std::vector<std::vector<T1> >& x,
             const std::vector<std::vector<T2> >& y,
             const plot2d::Params& params) {
   Plot2d(x.size(), params,
-         [&](size_t series_idx, size_t point_idx, double& x_value,
+         [&](std::size_t series_idx, std::size_t point_idx, double& x_value,
              double& y_value) {
            if (point_idx < x[series_idx].size()) {
              x_value = x[series_idx][point_idx];
@@ -155,9 +156,9 @@ template <class T1, class T2>
 void Plot2d(const cv::Mat_<T1> x, const cv::Mat_<T2> y,
             const plot2d::Params params) {
   Plot2d(x.rows, params,
-         [&](size_t series_idx, size_t point_idx, double& x_value,
+         [&](std::size_t series_idx, std::size_t point_idx, double& x_value,
              double& y_value) {
-           if (point_idx < (size_t)x.cols) {
+           if (point_idx < (std::size_t)x.cols) {
              x_value = x(series_idx, point_idx);
              y_value = y(series_idx, point_idx);
              return true;
@@ -182,9 +183,9 @@ void Plot2d(const Eigen::Matrix<T1, rows, cols, options, max_rows, max_cols> x,
             const Eigen::Matrix<T2, rows, cols, options, max_rows, max_cols> y,
             const plot2d::Params params) {
   Plot2d(x.cols(), params,
-         [&](size_t series_idx, size_t point_idx, double& x_value,
+         [&](std::size_t series_idx, std::size_t point_idx, double& x_value,
              double& y_value) {
-           if (point_idx < (size_t)x.rows()) {
+           if (point_idx < (std::size_t)x.rows()) {
              x_value = x(point_idx, series_idx);
              y_value = y(point_idx, series_idx);
              return true;
@@ -207,7 +208,7 @@ void Plot2d(const Eigen::Matrix<T1, rows, cols, options, max_rows, max_cols> x,
  */
 template <class CALLABLE>
 void Plot2d(const CALLABLE f, plot::plot2d::Params params,
-            size_t n = 100) {
+            std::size_t n = 100) {
   if (params.x_max() <= params.x_min()) {
     auto msg = "The provided parameter x_max is less than x_min";
     throw std::runtime_error(msg);
@@ -216,7 +217,8 @@ void Plot2d(const CALLABLE f, plot::plot2d::Params params,
                static_cast<double>(params.x_min())) /
               (n - 1);
   Plot2d(1, params,
-         [&](size_t, size_t point_idx, double& x_value, double& y_value) {
+         [&](std::size_t, std::size_t point_idx, double& x_value,
+             double& y_value) {
            if (point_idx < n) {
              x_value = params.x_min() + point_idx * dx;
              y_value = f(x_value);

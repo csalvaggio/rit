@@ -36,8 +36,8 @@ class CsvFile {
    * \param[in] label_line
    *     line number that column labels appear on [default is 0]
    */
-  CsvFile(std::string filename, size_t header_lines = 0,
-          size_t label_line = 0) {
+  CsvFile(std::string filename, std::size_t header_lines = 0,
+          std::size_t label_line = 0) {
     auto exists = std::filesystem::exists(filename);
     if (!exists) {
       auto msg = "Specified file does not exist";
@@ -70,25 +70,27 @@ class CsvFile {
 
   /* Header lines getter
    */
-  size_t header_lines() const { return header_lines_; }
+  std::size_t header_lines() const { return header_lines_; }
 
   /* Header lines setter
    *
    * \param[in] header_lines
    *     number of header lines [default is 0]
    */
-  void set_header_lines(size_t header_lines) { header_lines_ = header_lines; }
+  void set_header_lines(std::size_t header_lines) {
+    header_lines_ = header_lines;
+  }
 
   /* Label line getter
    */
-  size_t label_line() const { return label_line_; }
+  std::size_t label_line() const { return label_line_; }
 
   /* Label line setter
    *
    * \param[in] label_line
    *     line number that column labels appear on [default is 0]
    */
-  void set_label_line(size_t label_line) { label_line_ = label_line; }
+  void set_label_line(std::size_t label_line) { label_line_ = label_line; }
 
   /* Return data from desired column
    *
@@ -101,7 +103,7 @@ class CsvFile {
    *     std::vector containing the data from the desired column
    */
   template <typename T1>
-  std::vector<T1> get_column(size_t column) const {
+  std::vector<T1> get_column(std::size_t column) const {
     if (column <= 0) {
       auto msg = "Requested column is out of range";
       throw std::runtime_error(msg);
@@ -110,7 +112,7 @@ class CsvFile {
     std::ifstream f(filename_);
 
     std::string line;
-    for (size_t idx = 1; idx <= header_lines_; idx++) {
+    for (std::size_t idx = 1; idx <= header_lines_; idx++) {
       std::getline(f, line);
     }
 
@@ -118,7 +120,7 @@ class CsvFile {
     while (std::getline(f, line)) {
       std::stringstream ss(line);
       std::string str;
-      for (size_t idx = 1; idx <= column; idx++) {
+      for (std::size_t idx = 1; idx <= column; idx++) {
         std::getline(ss, str, ',');
       }
       if (std::is_same_v<T1, double>) {
@@ -158,7 +160,7 @@ class CsvFile {
    * \return
    *     std::string containing the label from the desired column
    */
-  std::string get_label(size_t column) const {
+  std::string get_label(std::size_t column) const {
     if (column <= 0) {
       auto msg = "Requested column is out of range";
       throw std::runtime_error(msg);
@@ -172,13 +174,13 @@ class CsvFile {
     std::ifstream f(filename_);
 
     std::string line;
-    for (size_t idx = 1; idx <= label_line_; idx++) {
+    for (std::size_t idx = 1; idx <= label_line_; idx++) {
       std::getline(f, line);
     }
 
     std::stringstream ss(line);
     std::string str;
-    for (size_t idx = 1; idx <= column; idx++) {
+    for (std::size_t idx = 1; idx <= column; idx++) {
       std::getline(ss, str, ',');
     }
 
@@ -194,8 +196,8 @@ class CsvFile {
 
  private:
   std::string filename_;
-  size_t header_lines_;
-  size_t label_line_;
+  std::size_t header_lines_;
+  std::size_t label_line_;
 };
 
 }

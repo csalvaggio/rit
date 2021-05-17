@@ -54,7 +54,7 @@ std::vector<int> Range(int a, int b);
  *
  * \return  a vector containing the requested range of values
  */
-std::vector<double> Range(double a, double b, size_t n);
+std::vector<double> Range(double a, double b, std::size_t n);
 
 /**
  * Convenience function to produce a vector containing n ordinal values in the
@@ -64,6 +64,6 @@ std::vector<double> Range(double a, double b, size_t n);
  *
  * \return  a vector containing the requested ordinal range of values
  */
-std::vector<int> Range(size_t n);
+std::vector<int> Range(std::size_t n);
 
 }

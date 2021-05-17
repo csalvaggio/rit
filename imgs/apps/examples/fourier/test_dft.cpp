@@ -9,8 +9,8 @@
 using namespace std;
 
 int main() {
-  size_t N = 32;
-  size_t repetitions = 10000;
+  std::size_t N = 32;
+  std::size_t repetitions = 10000;
 
   // Create and display the original 1-dimensional function (constant)
   auto f = cv::Mat::ones(N, 1, CV_64FC2);
@@ -26,7 +26,7 @@ int main() {
 
   // Time multiple repititions of the 1-dimensional DFT
   clock_t startTime = clock();
-  for (size_t idx = 0; idx < repetitions; idx++) {
+  for (std::size_t idx = 0; idx < repetitions; idx++) {
     F = ipcv::Dft(f, ipcv::DFT_SCALE);
   }
   clock_t endTime = clock();
@@ -39,7 +39,7 @@ int main() {
 
   // Time multiple repititions of the 1-dimensional DFT using cv::Dft
   startTime = clock();
-  for (size_t idx = 0; idx < repetitions; idx++) {
+  for (std::size_t idx = 0; idx < repetitions; idx++) {
     cv::dft(f, F, cv::DFT_COMPLEX_OUTPUT + cv::DFT_SCALE);
   }
   endTime = clock();
@@ -59,7 +59,7 @@ int main() {
 
   // Time multiple repititions of the inverse 1-dimensional DFT
   startTime = clock();
-  for (size_t idx = 0; idx < repetitions; idx++) {
+  for (std::size_t idx = 0; idx < repetitions; idx++) {
     inverse = ipcv::Dft(F, ipcv::DFT_INVERSE);
   }
   endTime = clock();
@@ -72,7 +72,7 @@ int main() {
 
   // Time multiple repititions of the inverse 1-dimensional DFT using cv::Dft
   startTime = clock();
-  for (size_t idx = 0; idx < repetitions; idx++) {
+  for (std::size_t idx = 0; idx < repetitions; idx++) {
     cv::dft(f, F, cv::DFT_REAL_OUTPUT + cv::DFT_INVERSE);
   }
   endTime = clock();

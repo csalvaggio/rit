@@ -125,15 +125,15 @@ void Params::set_z_scale(double z_scale) { z_scale_ = z_scale; }
 int Params::linestyle() const { return linestyle_[0]; }
 void Params::set_linestyle(int linestyle) {
   auto number_linestyles = sizeof(linestyle_) / sizeof(linestyle_[0]);
-  for (size_t idx = 0; idx < number_linestyles; idx++) {
+  for (std::size_t idx = 0; idx < number_linestyles; idx++) {
     linestyle_[idx] = linestyle;
   }
 }
-int Params::linestyle(size_t series_idx) const {
+int Params::linestyle(std::size_t series_idx) const {
   auto number_linestyles = sizeof(linestyle_) / sizeof(linestyle_[0]);
   return linestyle_[series_idx % number_linestyles];
 }
-void Params::set_linestyle(size_t series_idx, int linestyle) {
+void Params::set_linestyle(std::size_t series_idx, int linestyle) {
   auto number_linestyles = sizeof(linestyle_) / sizeof(linestyle_[0]);
   linestyle_[series_idx % number_linestyles] = linestyle;
 }

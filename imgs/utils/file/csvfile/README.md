@@ -14,15 +14,15 @@ and be sure to include <span style="font-family:Courier">    rit::utils\_file\_c
 Here is an example code snippet to read column labels and data from a CSV file, placing the data in a <span style="font-family:Courier">std::vector\<double\></span>
 
     std::string filename = "your filename";
-    size_t header_lines = 1;
-    size_t label_line = 1;
+    std::size_t header_lines = 1;
+    std::size_t label_line = 1;
 
     utils::CsvFile f;
     f.set_filename(filename);
     f.set_header_lines(header_lines);
     f.set_label_line(label_line);
 
-    size_t column = 1;
+    std::size_t column = 1;
     auto label = f.get_label(column);
     auto standard_vector = f.get_column<double>(column);
 
@@ -45,8 +45,8 @@ The same could be done to place the data in a <span style="font-family:Courier">
 
 With parameters
 
-    CsvFile(std::string filename, size_t header_lines = 0,
-            size_t label_line = 0) {
+    CsvFile(std::string filename, std::size_t header_lines = 0,
+            std::size_t label_line = 0) {
 
 where <span style="font-family:Courier">header\_lines</span> indicates the number of header lines that appear prior to the line that the data begins on [default is 0], and <span style="font-family:Courier">label\_line</span> indicates, if any, the line on which the labels are found [default is 0].
 
@@ -57,23 +57,23 @@ where <span style="font-family:Courier">header\_lines</span> indicates the numbe
 
 ###### Accessor and mutator for the header_lines member
 
-    size_t header_lines() const;
-    void set_header_lines(size_t header_lines);
+    std::size_t header_lines() const;
+    void set_header_lines(std::size_t header_lines);
 
 ###### Accessor and mutator for the label_line member
 
-    size_t label_line() const;
-    void set_label_line(size_t label_line);
+    std::size_t label_line() const;
+    void set_label_line(std::size_t label_line);
 
 ###### Return data from desired column
 
     template <typename T1>
-    std::vector<T1> get_column(size_t column) const;
+    std::vector<T1> get_column(std::size_t column) const;
  
 Valid template data types for vector are <span style="font-family:Courier">int</span>, <span style="font-family:Courier">long</span>, <span style="font-family:Courier">unsigned long</span>, <span style="font-family:Courier">long long</span>, <span style="font-family:Courier">unsigned long long</span>, <span style="font-family:Courier">float</span>, <span style="font-family:Courier">double</span>, and <span style="font-family:Courier">long double</span>. 
  
 ###### Return label/title from desired column
-    std::string get_label(size_t column) const;
+    std::string get_label(std::size_t column) const;
 
 # REQUIREMENTS
 * C++ compiler that supports C++17 dialect/ISO standard

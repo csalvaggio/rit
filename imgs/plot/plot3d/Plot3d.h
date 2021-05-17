@@ -32,13 +32,13 @@ void set_common_parameters(std::string& gp_msg, const plot3d::Params& params);
  *      callback function to deliver x, y, and z data series
  */
 template <class Callable>
-void Plot3d(size_t number_of_data_series, const plot3d::Params& params,
+void Plot3d(std::size_t number_of_data_series, const plot3d::Params& params,
             Callable callback) {
   std::string gp_msg;
-  for (size_t series_idx = 0; series_idx < number_of_data_series;
+  for (std::size_t series_idx = 0; series_idx < number_of_data_series;
        series_idx++) {
     gp_msg += "$data" + std::to_string(series_idx) + " << EOD\n";
-    size_t point_idx = 0;
+    std::size_t point_idx = 0;
     double x;
     double y;
     double z;
@@ -51,7 +51,7 @@ void Plot3d(size_t number_of_data_series, const plot3d::Params& params,
 
   set_common_parameters(gp_msg, params);
 
-  for (size_t series_idx = 0; series_idx < number_of_data_series;
+  for (std::size_t series_idx = 0; series_idx < number_of_data_series;
        series_idx++) {
     if (series_idx == 0) {
       gp_msg += "splot $data" + std::to_string(series_idx);
@@ -110,8 +110,8 @@ template <class T1, class T2, class T3>
 void Plot3d(const std::vector<T1>& x, const std::vector<T2>& y,
             const std::vector<T3>& z, const plot3d::Params& params) {
   Plot3d(1, params,
-         [&](size_t, size_t point_idx, double& x_value, double& y_value,
-             double& z_value) {
+         [&](std::size_t, std::size_t point_idx, double& x_value,
+             double& y_value, double& z_value) {
            if (point_idx < x.size()) {
              x_value = x[point_idx];
              y_value = y[point_idx];
@@ -139,7 +139,7 @@ void Plot3d(const std::vector<std::vector<T1> >& x,
             const std::vector<std::vector<T3> >& z,
             const plot3d::Params& params) {
   Plot3d(x.size(), params,
-         [&](size_t series_idx, size_t point_idx, double& x_value,
+         [&](std::size_t series_idx, std::size_t point_idx, double& x_value,
              double& y_value, double& z_value) {
            if (point_idx < x[series_idx].size()) {
              x_value = x[series_idx][point_idx];
@@ -167,9 +167,9 @@ template <class T1, class T2, class T3>
 void Plot3d(const cv::Mat_<T1> x, const cv::Mat_<T2> y, const cv::Mat_<T3> z,
             const plot3d::Params params) {
   Plot3d(x.rows, params,
-         [&](size_t series_idx, size_t point_idx, double& x_value,
+         [&](std::size_t series_idx, std::size_t point_idx, double& x_value,
              double& y_value, double& z_value) {
-           if (point_idx < (size_t)x.cols) {
+           if (point_idx < (std::size_t)x.cols) {
              x_value = x(series_idx, point_idx);
              y_value = y(series_idx, point_idx);
              z_value = z(series_idx, point_idx);
@@ -179,7 +179,7 @@ void Plot3d(const cv::Mat_<T1> x, const cv::Mat_<T2> y, const cv::Mat_<T3> z,
          });
 }
 
-/** Convenience function for plotting a cv::Mat_ as a three-dimensional 
+/** Convenience function for plotting a cv::Mat_ as a three-dimensional
  *  surface plot (index values used to label the x and y axes)
  *
  *  \param[in] z
@@ -190,9 +190,9 @@ void Plot3d(const cv::Mat_<T1> x, const cv::Mat_<T2> y, const cv::Mat_<T3> z,
 template <class T1>
 void Plot3d(const cv::Mat_<T1> z, const plot3d::Params params) {
   Plot3d(1, params,
-         [&](size_t, size_t point_idx, double& x_value,
+         [&](std::size_t, std::size_t point_idx, double& x_value,
              double& y_value, double& z_value) {
-           if (point_idx < (size_t)z.rows * (size_t)z.cols) {
+           if (point_idx < (std::size_t)z.rows * (std::size_t)z.cols) {
              int x_idx = point_idx % z.cols;
              x_value = x_idx;
              int y_idx = (point_idx / z.cols) % z.rows;
@@ -223,9 +223,9 @@ void Plot3d(const Eigen::Matrix<T1, rows, cols, options, max_rows, max_cols> x,
             const Eigen::Matrix<T3, rows, cols, options, max_rows, max_cols> z,
             const plot3d::Params params) {
   Plot3d(x.cols(), params,
-         [&](size_t series_idx, size_t point_idx, double& x_value,
+         [&](std::size_t series_idx, std::size_t point_idx, double& x_value,
              double& y_value, double& z_value) {
-           if (point_idx < (size_t)x.rows()) {
+           if (point_idx < (std::size_t)x.rows()) {
              x_value = x(point_idx, series_idx);
              y_value = y(point_idx, series_idx);
              z_value = z(point_idx, series_idx);
@@ -251,8 +251,8 @@ void Plot3d(const Eigen::Matrix<T1, rows, cols, options, max_rows, max_cols> x,
  *     representation of the function [default is 100]
  */
 template <class CALLABLE>
-void Plot3d(const CALLABLE f, plot::plot3d::Params params, size_t nx = 100,
-            size_t ny = 100) {
+void Plot3d(const CALLABLE f, plot::plot3d::Params params, std::size_t nx = 100,
+            std::size_t ny = 100) {
   if (params.x_max() <= params.x_min()) {
     auto msg = "The provided parameter x_max is less than x_min";
     throw std::runtime_error(msg);
@@ -268,8 +268,8 @@ void Plot3d(const CALLABLE f, plot::plot3d::Params params, size_t nx = 100,
                static_cast<double>(params.y_min())) /
               (ny - 1);
   Plot3d(1, params,
-         [&](size_t, size_t point_idx, double& x_value, double& y_value,
-             double& z_value) {
+         [&](std::size_t, std::size_t point_idx, double& x_value,
+             double& y_value, double& z_value) {
            if (point_idx < nx * ny) {
              x_value = params.x_min() + (point_idx % nx) * dx;
              y_value = params.y_min() + ((point_idx / nx) % ny) * dy;
