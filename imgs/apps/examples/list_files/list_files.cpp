@@ -5,8 +5,8 @@
 #include <vector>
 
 int main() {
-  std::string path = "/cis/faculty/cnspci/public_html/courses/common/images/";
-  std::string extension = ".tif";
+  std::string path = "../data/images/misc/";
+  std::string extension = ".ppm";
 
   const auto& directory_entries = std::filesystem::directory_iterator(path);
 
