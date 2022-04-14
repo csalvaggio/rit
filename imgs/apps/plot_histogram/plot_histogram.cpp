@@ -1,5 +1,6 @@
 #include <ctime>
 #include <iostream>
+#include <string>
 
 #include <boost/filesystem.hpp>
 #include <boost/program_options.hpp>
@@ -15,15 +16,19 @@ namespace po = boost::program_options;
 
 int main(int argc, char* argv[]) {
   bool verbose = false;
+  string plot_type = "histogram";
   string src_filename = "";
   string dst_filename = "";
 
   po::options_description options("Options");
-  options.add_options()("help,h", "display this message")(
-      "verbose,v", po::bool_switch(&verbose), "verbose [default is silent]")(
-      "source-filename,i", po::value<string>(&src_filename), "source filename")(
-      "destination-filename,o", po::value<string>(&dst_filename),
-      "destination filename (.eps and .png file formats are supported)");
+  options.add_options()
+      ("help,h", "display this message")
+      ("verbose,v", po::bool_switch(&verbose), "verbose [default is silent]")
+      ("source-filename,i", po::value<string>(&src_filename), "source filename")
+      ("plot-type,p", po::value<string>(&plot_type), 
+       "plot type (histogram | pdf | cdf) [default is histogram]")
+      ("destination-filename,o", po::value<string>(&dst_filename),
+       "destination filename (.eps and .png file formats are supported)");
 
   po::positional_options_description positional_options;
   positional_options.add("source-filename", -1);
@@ -47,12 +52,18 @@ int main(int argc, char* argv[]) {
     return EXIT_FAILURE;
   }
 
+  if (plot_type != "histogram" && plot_type != "pdf" && plot_type != "cdf") {
+    cerr << "Plot type must be histogram | pdf | cdf" << endl;
+    return EXIT_FAILURE;
+  }
+
   cv::Mat src = cv::imread(src_filename, cv::IMREAD_COLOR);
 
   if (verbose) {
     cout << "Source filename: " << src_filename << endl;
     cout << "Size: " << src.size() << endl;
     cout << "Channels: " << src.channels() << endl;
+    cout << "Plot type: " << plot_type << endl;
     cout << "Destination filename: " << dst_filename << endl;
   }
 
@@ -88,11 +99,21 @@ int main(int argc, char* argv[]) {
 
   plot::plot2d::Params params;
   params.set_x_label("Digital Count");
-  params.set_y_label("Number of Pixels");
   params.set_x_min(0);
   params.set_x_max(255);
   params.set_destination_filename(dst_filename);
-  plot::plot2d::Plot2d(dc, h, params);
+  if (plot_type == "histogram") {
+    params.set_y_label("Number of Pixels");
+    plot::plot2d::Plot2d(dc, h, params);
+  } else if (plot_type == "pdf") {
+    double max_value;
+    cv::minMaxLoc(pdf, NULL, &max_value, NULL, NULL);
+    params.set_y_label("Probability Density");
+    plot::plot2d::Plot2d(dc, pdf, params);
+  } else {
+    params.set_y_label("Cumulative Density");
+    plot::plot2d::Plot2d(dc, cdf, params);
+  }
 
   return EXIT_SUCCESS;
 }
