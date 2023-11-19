@@ -11,7 +11,7 @@
 
 namespace ipcv {
 
-/** Compute the product of a spectrum and a filter
+/** Shift/quadrant exchange a complex-valued frequency spectrum
  *
  *  \param[in] spectrum   Frequency spectrum cv::Mat (CV_64FC2)
  *
