@@ -3,15 +3,15 @@
 
 #include <opencv2/opencv.hpp>
 
-#include "imgs/ipcv/mnist/Mnist.h"
+#include "imgs/statistics/data_readers/DataReaders.h"
 
 int main() {
   std::vector<unsigned char> train_labels =
-      ipcv::ReadMnistLabels(MNIST_TRAIN_LABELS_FILE);
+      statistics::ReadMnistLabels(MNIST_TRAIN_LABELS_FILE);
   std::cout << train_labels.size() << " MNIST train labels read" << std::endl;
 
   std::vector<cv::Mat> train_images =
-      ipcv::ReadMnistImages(MNIST_TRAIN_IMAGES_FILE);
+      statistics::ReadMnistImages(MNIST_TRAIN_IMAGES_FILE);
   std::cout << train_images.size() << " MNIST train images read" << std::endl;
 
   for (size_t i = 0; i < train_images.size(); i++) {

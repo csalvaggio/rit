@@ -1,14 +1,14 @@
 /** Aggregate interface file for MNIST functions
  *
- *  \file imgs/ipcv/mnist/Mnist.h
+ *  \file imgs/statistics/data_readers/Mnist.h
  *  \author Carl Salvaggio, Ph.D. (salvaggio@cis.rit.edu)
  *  \date 19 Nov 2023
  */
 
 #pragma once
 
-#include "imgs/ipcv/mnist/ReadMnistImages.h"
-#include "imgs/ipcv/mnist/ReadMnistLabels.h"
+#include "imgs/statistics/data_readers/ReadMnistImages.h"
+#include "imgs/statistics/data_readers/ReadMnistLabels.h"
 
 // MNIST data set files relative to the "build" directory
 const std::string MNIST_TRAIN_IMAGES_FILE =

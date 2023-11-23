@@ -1,5 +1,6 @@
 add_subdirectory(awb_grayworld)
 add_subdirectory(bilateral_filter)
+add_subdirectory(classification)
 add_subdirectory(demosaic_bilinear)
 add_subdirectory(demosaic_laroche_and_prescott)
 add_subdirectory(display)

@@ -1,7 +1,7 @@
 /** Interface file for reading the MNIST image data.  Either the training
  *  or test data may be read with this function.
  *
- *  \file ipcv/mnist/ReadMnistImages.h
+ *  \file statistics/data_readers/ReadMnistImages.h
  *  \author Carl Salvaggio, Ph.D. (salvaggio@cis.rit.edu)
  *  \date 19 Nov 2023
  */
@@ -13,7 +13,7 @@
 
 #include <opencv2/opencv.hpp>
 
-namespace ipcv {
+namespace statistics {
 
 /** Read the MNIST images
  *

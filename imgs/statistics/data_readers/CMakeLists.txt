@@ -1,4 +1,4 @@
-rit_add_library(ipcv_mnist
+rit_add_library(statistics_data_readers
   SOURCES
     ReadMnistImages.cpp
     ReadMnistLabels.cpp
@@ -8,7 +8,7 @@ rit_add_library(ipcv_mnist
     Mnist.h
 )
 
-target_link_libraries(ipcv_mnist 
+target_link_libraries(statistics_data_readers
   PUBLIC 
     opencv_core
   PRIVATE

@@ -1,17 +1,17 @@
 /** Implementation file for reading the MNIST image data.  Either the training
  *  or test data may be read with this function.
  *
- *  \file ipcv/mnist/ReadMnistImages.h
+ *  \file statistics/data_readers/ReadMnistImages.h
  *  \author Carl Salvaggio, Ph.D. (salvaggio@cis.rit.edu)
  *  \date 19 Nov 2023
  */
 
-#include "imgs/ipcv/mnist/ReadMnistImages.h"
+#include "imgs/statistics/data_readers/ReadMnistImages.h"
 
 #include <iostream>
 #include <fstream>
 
-namespace ipcv {
+namespace statistics {
 
 std::vector<cv::Mat> ReadMnistImages(const std::string filename) {
   // Open images file

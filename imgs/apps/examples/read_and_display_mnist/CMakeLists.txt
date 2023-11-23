@@ -4,7 +4,7 @@ rit_add_executable(read_and_display_mnist
 )
 
 target_link_libraries(read_and_display_mnist 
-  rit::ipcv_mnist
+  rit::statistics_data_readers
   opencv_core
   opencv_highgui
 )

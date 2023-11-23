@@ -1,17 +1,17 @@
 /** Implementation file for reading the MNIST label data.  Either the training
  *  or test data may be read with this function.
  *
- *  \file ipcv/mnist/ReadMnistLabels.cpp
+ *  \file statistics/data_readers/ReadMnistLabels.cpp
  *  \author Carl Salvaggio, Ph.D. (salvaggio@cis.rit.edu)
  *  \date 19 Nov 2023
  */
 
-#include "imgs/ipcv/mnist/ReadMnistLabels.h"
+#include "imgs/statistics/data_readers/ReadMnistLabels.h"
 
 #include <iostream>
 #include <fstream>
 
-namespace ipcv {
+namespace statistics {
 
 std::vector<unsigned char> ReadMnistLabels(const std::string filename) {
   // Open labels file
