@@ -17,7 +17,8 @@
 namespace statistics {
 
 void ConfusionMatrix(const std::vector<unsigned char>& truth_labels,
-                     const std::vector<unsigned char>& predicted_labels) {
+                     const std::vector<unsigned char>& predicted_labels,
+                     const unsigned char ascii_offset_for_labels) {
   // Determine the number of labels in the data set, set it to the maximum label
   // enumeration in either the truth or predicted label vector
   auto it_truth_labels =
@@ -56,7 +57,13 @@ void ConfusionMatrix(const std::vector<unsigned char>& truth_labels,
   std::cout << "  ";
   for (std::size_t predicted_label_idx = 0;
        predicted_label_idx < number_of_labels; predicted_label_idx++) {
-    std::cout << std::setw(field_width) << predicted_label_idx;
+    if (ascii_offset_for_labels == 0) {
+      std::cout << std::setw(field_width) << predicted_label_idx;
+    } else {
+      std::cout << std::setw(field_width)
+                << static_cast<unsigned char>(predicted_label_idx +
+                                              ascii_offset_for_labels);
+    }
   }
   std::cout << std::endl;
 
@@ -76,7 +83,14 @@ void ConfusionMatrix(const std::vector<unsigned char>& truth_labels,
   // values predicted to represent the current truth value
   for (std::size_t truth_label_idx = 0; truth_label_idx < number_of_labels;
        truth_label_idx++) {
-    std::cout << std::setw(field_width) << truth_label_idx << " |";
+    if (ascii_offset_for_labels == 0) {
+      std::cout << std::setw(field_width) << truth_label_idx << " |";
+    } else {
+      std::cout << std::setw(field_width)
+                << static_cast<unsigned char>(truth_label_idx +
+                                              ascii_offset_for_labels)
+                << " |";
+    }
     for (std::size_t predicted_label_idx = 0;
          predicted_label_idx < number_of_labels; predicted_label_idx++) {
       std::cout << std::setw(field_width);

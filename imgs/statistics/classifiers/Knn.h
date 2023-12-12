@@ -28,9 +28,10 @@ namespace statistics {
  *                              Lp-norm (Minkowski distance) (NOTE: p = 1
  *                              represents the Manhattan distance or L1-norm,
  *                              p = 2 represents the Euclidean distance
- *                              or L2-norm; both will trigger the use of the
- *                              cv::norm() routine and will run significantly
- *                              faster than any other order) [default is 2]
+ *                              or L2-norm; both of these choices will trigger
+ *                              the use of the cv::norm() routine and will
+ *                              run significantly faster than any other order)
+ *                              [default is 2]
  *  \return                     vector containing the enumerated labels for
  *                              each of the classified test images
  */
