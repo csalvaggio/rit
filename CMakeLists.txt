@@ -22,14 +22,14 @@ if(EXISTS "${CMAKE_BINARY_DIR}/conanbuildinfo.cmake")
   rit_add_conan_alias(CONAN_TARGET opencv ALIAS opencv_videoio)
   rit_add_conan_alias(CONAN_TARGET eigen NAMESPACE Eigen3 ALIAS Eigen)
 else()
-  find_package(Boost REQUIRED 
-    COMPONENTS 
-      program_options 
-      iostreams 
-      filesystem 
-      system
+  find_package(Boost CONFIG REQUIRED COMPONENTS
+    program_options
+    iostreams
+    filesystem
+    system
   )
   find_package(Eigen3 REQUIRED NO_MODULE)
+  include_directories(${EIGEN3_INCLUDE_DIR})
   find_package(OpenCV REQUIRED)
 endif()
 
